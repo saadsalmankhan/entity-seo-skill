@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+sa-key*.json
+*.key
+.env
+.DS_Store
