@@ -72,6 +72,12 @@ See [`references/measurement.md`](references/measurement.md) for the one-time
 - **Truth & consistency** across site, résumé, schema, and every profile.
 - **Secrets stay secret** (keys `chmod 600`, never committed).
 
+## Built by
+
+Created by [Saad Salman](https://saadsalman.org) — a fintech product manager in
+Lahore. This is the exact entity-SEO playbook used to build and rank
+[saadsalman.org](https://saadsalman.org). If it's useful, a star helps others find it.
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Use it, fork it, improve it.
