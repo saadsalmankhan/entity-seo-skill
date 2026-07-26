@@ -21,16 +21,35 @@ real problem is **entity ambiguity + authority**, not discovery — and that's f
 Works for **individuals** (`Person` schema) and **organizations** (`Organization` /
 `LocalBusiness`, Google Business Profile) — the differences are called out throughout.
 
-## Use it as a Claude skill
+## Install it as a Claude skill
 
-Clone into your Claude skills directory:
+Clone into your Claude skills directory (the folder name becomes the skill name):
 
 ```bash
-git clone https://github.com/<owner>/entity-seo-skill.git ~/.claude/skills/entity-seo
+git clone https://github.com/saadsalmankhan/entity-seo-skill.git ~/.claude/skills/entity-seo
 ```
 
-Then in Claude Code / Claude, ask something like *"help me rank #1 for my name"* or
-*"why does another <name> outrank me — fix my SEO"*, and the skill guides the work.
+- **Personal** (just you): `~/.claude/skills/entity-seo/`
+- **Per-project / shared with a team**: `<repo>/.claude/skills/entity-seo/` and commit it.
+
+Restart Claude Code (or reload) so it picks up the new skill.
+
+## How to call it
+
+Three ways, once installed:
+
+1. **Let it auto-trigger.** Just describe the goal and Claude matches the skill's
+   `description`:
+   > "Help me rank #1 for my name."
+   > "Another <name> outranks me on Google — fix my SEO."
+   > "Set up daily rank tracking for my site."
+2. **Invoke it by name.** In Claude Code, type `/entity-seo`, or say
+   *"use the entity-seo skill on my site."*
+3. **Just read it.** It's plain Markdown — `SKILL.md` + `references/` work as a
+   standalone playbook even without Claude.
+
+The skill then walks the 6 phases (Diagnose → On-site → Off-site → Content →
+Measure → Iterate), asking for what it needs (your name, domain, existing profiles).
 
 ## Use the rank-check script standalone
 
