@@ -14,6 +14,22 @@ Placeholders: `{ENTITY}` (name), `{DOMAIN}` (https://example.org), `{ROLE}`,
   export const metadata = { title: { absolute: "About {ENTITY} | {ROLE}" } };
   ```
 
+## Meta, headings & URL fundamentals
+- Meta description: unique per page, 150–160 chars, states the entity/topic plainly
+  and includes a soft call-to-action. Don't leave it to auto-generation.
+- Heading hierarchy: exactly one `<h1>` per page; `<h2>`/`<h3>` follow a logical
+  outline, no skipped levels, no keyword-stuffed headings.
+- URL structure: short, readable, hyphenated, no query-string cruft for canonical
+  content (`/blog/{slug}` not `/blog?id=123`); avoid duplicate/near-duplicate paths.
+- Open Graph / Twitter Card: `og:title`, `og:description`, `og:image` (the same
+  entity photo/logo used everywhere), `twitter:card=summary_large_image` — controls
+  how the entity appears when shared, which is itself a trust/consistency signal.
+- Content depth: about/case-study/article pages carry substantive text (500+ words;
+  1500+ for pillar/cornerstone content) — thin pages read as low-effort to both
+  classic ranking and AI synthesis (see `references/geo-aeo.md`).
+- Freshness signals: visible "Published"/"Updated" dates on articles; re-date
+  evergreen pages (about, services) when materially changed, not on a schedule.
+
 ## Canonicals
 - Set `alternates.canonical` **per page** (`/`, `/about`, `/blog`, ...).
 - **Never** set a single canonical in the root layout — child pages inherit it and

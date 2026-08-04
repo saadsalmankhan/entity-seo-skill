@@ -52,6 +52,15 @@ Run it daily on whatever scheduler you use (cron, a Claude Code scheduled task, 
 CI cron, etc.). Optionally email the report through an existing transactional
 sender (Resend/SMTP) — read the key from the environment, never hardcode it.
 
+## GEO/AEO signal checks
+- Search Console → **Enhancements** shows valid/invalid counts for any FAQ/HowTo
+  markup added in the GEO/AEO phase (`references/geo-aeo.md`) — fix invalid items
+  immediately.
+- There's no free official API for AI-Overview or assistant citations. Treat
+  whether an AI search cites `{ENTITY}` as a manual, periodic spot-check (ask
+  ChatGPT Search / Perplexity / Gemini the name query yourself), not something to
+  automate or scrape.
+
 ## What "working" looks like
 - **Week 1:** little movement — Google is still recrawling. Don't refresh Google
   manually; it tells you nothing.

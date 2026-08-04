@@ -1,7 +1,9 @@
 # entity-seo
 
 A reusable **Claude skill** (and plain playbook) for ranking a **person or brand at
-the top of Google for their own name** — the legitimate, no-black-hat way.
+the top of Google for their own name** — the legitimate, no-black-hat way — with
+full-site **SEO, GEO (AI/generative search), and AEO (answer engines & voice)**
+technique coverage built in.
 
 It's for the common situation where you own the matching domain but you're *not*
 the top result for your own name, because other entities share it (a business, a
@@ -13,9 +15,11 @@ real problem is **entity ambiguity + authority**, not discovery — and that's f
 | File | What it covers |
 |---|---|
 | [`SKILL.md`](SKILL.md) | The skill: guardrails + a 6-phase workflow (Diagnose → On-site → Off-site → Content → Measure → Iterate) |
-| [`references/on-site.md`](references/on-site.md) | Titles, canonicals, identity block, the JSON-LD entity graph, sitemap/robots, image SEO, PDF consistency |
+| [`references/on-site.md`](references/on-site.md) | Titles, meta/headings/URLs, canonicals, identity block, the JSON-LD entity graph, sitemap/robots, image SEO, PDF consistency |
+| [`references/geo-aeo.md`](references/geo-aeo.md) | GEO (E-E-A-T, AI-citable content, technical crawlability) and AEO (featured-snippet formatting, FAQ/HowTo/Speakable schema, voice search) |
 | [`references/off-site.md`](references/off-site.md) | Profile & backlink checklist (LinkedIn, GitHub, Wellfound, Crunchbase, Google Business Profile, …) |
-| [`references/measurement.md`](references/measurement.md) | Google Search Console setup + free daily rank automation |
+| [`references/measurement.md`](references/measurement.md) | Google Search Console setup, free daily rank automation, FAQ/HowTo validity checks |
+| [`references/reporting.md`](references/reporting.md) | Optional agency-style Word/PDF report with color-coded SEO/GEO/AEO scores |
 | [`scripts/gsc_rank.py`](scripts/gsc_rank.py) | Free, official GSC API rank-check script (no SERP scraping) |
 
 Works for **individuals** (`Person` schema) and **organizations** (`Organization` /
@@ -43,6 +47,7 @@ Three ways, once installed:
    > "Help me rank #1 for my name."
    > "Another <name> outranks me on Google — fix my SEO."
    > "Set up daily rank tracking for my site."
+   > "Audit my site for SEO, GEO, and AEO and give me a scored report."
 2. **Invoke it by name.** In Claude Code, type `/entity-seo`, or say
    *"use the entity-seo skill on my site."*
 3. **Just read it.** It's plain Markdown — `SKILL.md` + `references/` work as a
