@@ -15,7 +15,7 @@ real problem is **entity ambiguity + authority**, not discovery — and that's f
 | File | What it covers |
 |---|---|
 | [`SKILL.md`](SKILL.md) | The skill: guardrails + a 6-phase workflow (Diagnose → On-site → Off-site → Content → Measure → Iterate) |
-| [`references/on-site.md`](references/on-site.md) | Titles, meta/headings/URLs, canonicals, identity block, the JSON-LD entity graph, sitemap/robots, image SEO, PDF consistency |
+| [`references/on-site.md`](references/on-site.md) | Titles, meta/headings/URLs, canonicals, identity block, the JSON-LD entity graph, sitemap/robots, image SEO, PDF consistency, content quality (thin-content/word-count check, grammar QA, keyword cannibalization) |
 | [`references/geo-aeo.md`](references/geo-aeo.md) | GEO (E-E-A-T, AI-citable content, technical crawlability) and AEO (featured-snippet formatting, FAQ/HowTo/Speakable schema, voice search) |
 | [`references/off-site.md`](references/off-site.md) | Profile & backlink checklist (LinkedIn, GitHub, Wellfound, Crunchbase, Google Business Profile, …) |
 | [`references/measurement.md`](references/measurement.md) | Google Search Console setup, free daily rank automation, FAQ/HowTo validity checks |

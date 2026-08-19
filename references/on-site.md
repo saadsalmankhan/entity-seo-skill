@@ -24,11 +24,25 @@ Placeholders: `{ENTITY}` (name), `{DOMAIN}` (https://example.org), `{ROLE}`,
 - Open Graph / Twitter Card: `og:title`, `og:description`, `og:image` (the same
   entity photo/logo used everywhere), `twitter:card=summary_large_image` — controls
   how the entity appears when shared, which is itself a trust/consistency signal.
-- Content depth: about/case-study/article pages carry substantive text (500+ words;
-  1500+ for pillar/cornerstone content) — thin pages read as low-effort to both
-  classic ranking and AI synthesis (see `references/geo-aeo.md`).
 - Freshness signals: visible "Published"/"Updated" dates on articles; re-date
   evergreen pages (about, services) when materially changed, not on a schedule.
+
+## Content quality (don't skip — schema can't rescue thin content)
+A page can have flawless titles, canonicals, and JSON-LD and still be passed over by
+AI Overviews and answer engines if the content itself is thin. Treat this as an
+active check, not a one-time rule:
+- **Word-count every key page** (about, case studies, pillar articles). Flag
+  anything under **500 words** (**1500+** for cornerstone/pillar content) as a
+  content-quality risk and route it to Phase 4 for a rewrite before investing
+  further in schema or off-site work on that page — technical SEO and structured
+  data cannot compensate for thin content when engines decide what to cite.
+- **Proofread for grammar and spelling.** Errors are a low-effort signal to both
+  classic ranking and AI synthesis, same as thin content — run a pass (or a
+  spell/grammar tool) on every page before publishing or re-publishing.
+- **Check for keyword cannibalization** on multi-page sites/orgs: if two pages
+  target the same query (e.g. two pages both trying to rank for "{ENTITY} {ROLE}"),
+  consolidate or differentiate them — competing pages split authority instead of
+  compounding it.
 
 ## Canonicals
 - Set `alternates.canonical` **per page** (`/`, `/about`, `/blog`, ...).

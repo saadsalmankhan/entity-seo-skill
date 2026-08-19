@@ -36,6 +36,11 @@ wins come from off-site authority and content.
    but buried). Most sites are the latter.
 4. Inventory every existing public surface (LinkedIn, GitHub, company page,
    university, press, résumé) — these are consolidation targets for later.
+5. Word-count the key pages (about, case studies, pillar articles). A page under
+   500 words (1500+ for cornerstone content) is a content-quality risk — schema and
+   technical SEO cannot get a thin page cited by AI Overviews or answer engines.
+   Flag these now so Phase 2 routes them to Phase 4 for a rewrite instead of
+   spending schema effort on a page that needs a rewrite first.
 
 ### 2. On-site: SEO, GEO & AEO
 Read `references/on-site.md` and `references/geo-aeo.md`, and apply both. Summary:
@@ -54,6 +59,9 @@ Read `references/on-site.md` and `references/geo-aeo.md`, and apply both. Summar
 - Image SEO: descriptive filename + alt, same photo/logo everywhere, referenced in
   schema `image`.
 - Fix indexed PDFs at the **same URL** (update text **and** metadata).
+- **Content quality**: word-count check + grammar/spelling proofread on every key
+  page, and a keyword-cannibalization check on multi-page sites — see on-site.md's
+  "Content quality" section. Route anything thin to Phase 4 before adding schema.
 - **GEO**: E-E-A-T signals, lead-with-the-answer content structure, AI-crawlable
   rendering — see geo-aeo.md.
 - **AEO**: question-phrased headings with direct-answer paragraphs, `FAQPage`/
