@@ -16,10 +16,12 @@ real problem is **entity ambiguity + authority**, not discovery — and that's f
 |---|---|
 | [`SKILL.md`](SKILL.md) | The skill: guardrails + a 6-phase workflow (Diagnose → On-site → Off-site → Content → Measure → Iterate) |
 | [`references/on-site.md`](references/on-site.md) | Titles, meta/headings/URLs, canonicals, identity block, the JSON-LD entity graph, sitemap/robots, image SEO, PDF consistency, content quality (thin-content/word-count check, grammar QA, keyword cannibalization) |
-| [`references/geo-aeo.md`](references/geo-aeo.md) | GEO (E-E-A-T, AI-citable content, technical crawlability) and AEO (featured-snippet formatting, FAQ/HowTo/Speakable schema, voice search) |
+| [`references/geo-aeo.md`](references/geo-aeo.md) | GEO (E-E-A-T, AI-citable content, technical crawlability), query-intent mapping, and AEO (featured-snippet formatting, FAQ/HowTo/Speakable schema, voice search) |
+| [`references/local-voice-seo.md`](references/local-voice-seo.md) | Local SEO for organizations with a real physical/service-area presence (Google Business Profile, NAP, location pages), and voice-search optimization for everyone |
 | [`references/off-site.md`](references/off-site.md) | Profile & backlink checklist (LinkedIn, GitHub, Wellfound, Crunchbase, Google Business Profile, …) |
-| [`references/measurement.md`](references/measurement.md) | Google Search Console setup, free daily rank automation, FAQ/HowTo validity checks |
+| [`references/measurement.md`](references/measurement.md) | Google Search Console setup, free daily rank automation, FAQ/HowTo validity checks, weekly/monthly/quarterly monitoring cadence |
 | [`references/reporting.md`](references/reporting.md) | Optional agency-style Word/PDF report with color-coded SEO/GEO/AEO scores |
+| [`references/tools.md`](references/tools.md) | Free-first tool list per task, with paid alternatives once volume justifies them |
 | [`scripts/gsc_rank.py`](scripts/gsc_rank.py) | Free, official GSC API rank-check script (no SERP scraping) |
 
 Works for **individuals** (`Person` schema) and **organizations** (`Organization` /

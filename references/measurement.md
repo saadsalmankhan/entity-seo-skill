@@ -69,3 +69,16 @@ sender (Resend/SMTP) — read the key from the environment, never hardcode it.
 - Check **weekly**, not hourly.
 - If rank stalls after on-site is complete, the answer is more **off-site authority
   and content**, not more on-site tweaks.
+
+## Monitoring cadence
+- **Weekly**: review the rank-check output (average position trend for
+  `{ENTITY}`); skim Search Console impressions/clicks for anything new.
+- **Monthly**: content-quality audit against `references/on-site.md`'s checklist
+  (word count, grammar, does each page still directly answer its target
+  question) on every key page; spot-check the target voice/AI queries on
+  whatever assistants are on hand (`references/local-voice-seo.md`), logging
+  any change from the last check.
+- **Quarterly**: re-run the off-site checklist (`references/off-site.md`) to
+  confirm every profile link still resolves and nothing has drifted; revisit
+  the FAQ question set — are these still real questions people ask, or has the
+  entity landscape shifted (new namesakes, a role change)?

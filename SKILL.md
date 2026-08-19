@@ -1,6 +1,6 @@
 ---
 name: entity-seo
-description: Rank a person or brand at the top for their own name, with full-site SEO, GEO (AI/generative search), and AEO (answer engines & voice) technique coverage along the way. Use when someone owns a matching domain but is outranked by same-name entities (a business, a celebrity, hundreds of namesakes), the site is new and low-authority, or they want a broader SEO/GEO/AEO tune-up while fixing the name-ranking problem. Walks through diagnosis, on-site SEO (titles, meta/headings/URLs, canonicals, a JSON-LD entity graph, sitemap/robots, image SEO), GEO & AEO (E-E-A-T, AI-citable content, featured-snippet formatting, FAQ/HowTo/Speakable schema, voice search), off-site authority (profile links and backlinks), first-hand content, free Google Search Console rank measurement with a daily automation, and an optional agency-style Word/PDF report with color-coded scores. Works for individuals and organizations. Triggers on requests like "rank me for my name", "I'm not the top result for my own name", "improve my personal/brand SEO", "why does another Saad Salman outrank me", "track my Google rank", "audit my site for SEO/GEO/AEO".
+description: Rank a person or brand at the top for their own name, with full-site SEO, GEO (AI/generative search), AEO (answer engines & voice), and local SEO technique coverage along the way. Use when someone owns a matching domain but is outranked by same-name entities (a business, a celebrity, hundreds of namesakes), the site is new and low-authority, or they want a broader SEO/GEO/AEO tune-up while fixing the name-ranking problem. Walks through diagnosis, on-site SEO (titles, meta/headings/URLs, canonicals, a JSON-LD entity graph, sitemap/robots, image SEO, content-quality/thin-content checks), GEO & AEO (E-E-A-T, AI-citable content, query-intent mapping, featured-snippet formatting, FAQ/HowTo/Speakable schema, voice search), local SEO for organizations with a physical/service-area presence, off-site authority (profile links and backlinks), first-hand content, a free-first tool list, free Google Search Console rank measurement with a daily automation and a weekly/monthly/quarterly monitoring cadence, and an optional agency-style Word/PDF report with color-coded scores. Works for individuals and organizations. Triggers on requests like "rank me for my name", "I'm not the top result for my own name", "improve my personal/brand SEO", "why does another Saad Salman outrank me", "track my Google rank", "audit my site for SEO/GEO/AEO", "help with local SEO or voice search for my business".
 ---
 
 # Entity SEO — rank a person or brand for their own name
@@ -66,6 +66,13 @@ Read `references/on-site.md` and `references/geo-aeo.md`, and apply both. Summar
   rendering — see geo-aeo.md.
 - **AEO**: question-phrased headings with direct-answer paragraphs, `FAQPage`/
   `HowTo`/`Speakable` schema where genuine content supports it — see geo-aeo.md.
+- **Query intent**: match format to intent (navigational/informational/commercial
+  investigation/transactional) before writing — see geo-aeo.md's "Query intent".
+- **Local SEO & voice search** (optional — read `references/local-voice-seo.md`
+  first to check it applies): organizations with a real physical/service-area
+  presence add Google Business Profile + location pages; everyone else does the
+  voice-search half only (conversational long-tail phrasing, 40–60 word answers,
+  `Speakable` schema, manual Siri/Assistant/Alexa spot-checks).
 
 Deliverable: a deployable patch. Verify with a build and by inspecting the
 rendered `<title>`, canonical, and JSON-LD (including any FAQ/HowTo schema added).
@@ -94,9 +101,9 @@ scorecard — once as a baseline after Phase 1, and again after each Iterate cyc
 to show delta.
 
 ### 6. Iterate
-Weekly: review average position and indexed-page count. If on-site is done and rank
-is stuck, the lever is **more off-site authority and more content** — not more
-on-site tweaks.
+Follow the weekly/monthly/quarterly cadence in `references/measurement.md`'s
+"Monitoring cadence". If on-site is done and rank is stuck, the lever is **more
+off-site authority and more content** — not more on-site tweaks.
 
 ## Individual vs organization
 
@@ -105,4 +112,8 @@ on-site tweaks.
 - **Organization:** schema `Organization`/`LocalBusiness`; off-site = **Google
   Business Profile** (biggest lever for local/physical presence), industry
   directories, press/PR, Crunchbase (company), review sites; watch NAP consistency
-  and reviews. See the org column in each reference file.
+  and reviews. Full Local SEO applies — see `references/local-voice-seo.md`.
+  See the org column in each reference file.
+
+Tool recommendations (free-first, paid only once volume justifies them) are in
+`references/tools.md`.

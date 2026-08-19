@@ -37,6 +37,21 @@ recognizing `{ENTITY}` as a single, disambiguated entity.
 - `robots.txt` doesn't block known AI crawlers (e.g. `GPTBot`, `PerplexityBot`,
   `Google-Extended`) unless the entity has a deliberate reason to opt out.
 
+## Query intent (decide format before writing)
+Match content format to why someone is searching, not just what they typed:
+- **Navigational** ("{ENTITY}") — the exact-name query this whole skill targets.
+  The lever here is consolidation (on-site entity graph + off-site profile links),
+  not new content.
+- **Informational** ("who is {ENTITY}", "what does {ENTITY} do") — a direct-answer
+  paragraph or FAQ entry, per the AEO section below.
+- **Commercial investigation** ("best {ROLE} for X", "{ENTITY} vs {COMPETITOR}") —
+  favors comparison tables and lists; structured markup extracts far more
+  reliably from these than from prose.
+- **Transactional** ("hire {ENTITY}", "book {ENTITY} consulting") — the target
+  page needs one unambiguous next action above the fold (contact form, booking
+  link) — an AI engine can cite the entity perfectly and still lose the
+  conversion if the page itself makes the next step unclear.
+
 ## AEO: make the entity extractable as a direct answer
 
 **Featured-snippet-ready formatting**
