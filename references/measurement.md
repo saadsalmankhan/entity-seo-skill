@@ -38,6 +38,49 @@ Key implementation notes baked in:
   data lags ~2 days), then pull each target query's `position`/`impressions`/`clicks`.
 - Handle the empty-`rows` case: a newly verified property returns no rows → report
   "No data yet" instead of crashing.
+- **Query breakdown**: every recorded query is auto-bucketed (exact name /
+  name + platform / name + role / name + location / name + other / partial /
+  non-name) with an impression-weighted average position per bucket. At low
+  volume, single-query rows are noise; buckets make the exact-name fight vs
+  the winnable name+modifier queries legible at a glance.
+- **Country split** for the name query (`dimensions=["query","country"]`):
+  GSC's headline average blends all countries and can hide a page-1 position
+  at home behind a global position of 70+.
+- **Page dimension + totals**: Google anonymizes rare long-tail queries — they
+  never appear as query rows but their impressions DO appear per-page and in
+  the no-dimension totals. Reporting `totals − visible query impressions`
+  surfaces that hidden activity; the per-page list shows where it landed.
+- **Trend vs the prior 28 days**: on a new site, impressions move before
+  position does — trend the impressions, not just the rank.
+
+### Reading GSC numbers honestly
+- **Average position is survivor-biased**: it averages only the times the site
+  actually appeared. One appearance at position 8 out of thousands of searches
+  prints as "position 8". Read position together with impressions.
+- **A missing query row ≠ position 100.** It means zero impressions — GSC
+  cannot see queries where the site never surfaced at all.
+
+## Real-SERP spot checks (what GSC can't see)
+GSC only reports queries where the site got an impression, so it can't answer
+"where do I rank for X?" when the site doesn't surface for X at all. Options,
+as of late 2026:
+- **Google's Programmable Search Engine "search the entire web" mode is
+  deprecated** for new engines — the old free official way to approximate full
+  Google results via the Custom Search JSON API is gone.
+- **Google no longer honors `num=100`**: any SERP fetch returns ~10 results per
+  page. Rank checks must paginate (2 pages ≈ top 20) and should report
+  "beyond page 2" as `>20`, not a fake `>100`.
+- **Don't scrape google.com directly** — bot detection blocks it almost
+  immediately and it's against ToS. Use a SERP API (SerpApi has a recurring
+  free tier of ~100 searches/month; Serper/DataForSEO are cheap paid options)
+  and budget it: ~10 keywords × 2 pages weekly ≈ 80 searches/month.
+- **Scan for every owned property** (personal site, GitHub, product domains) —
+  a name+project query often ranks the GitHub repo or product site before the
+  personal site, and that still wins the SERP for the entity.
+- **Scout before you track**: spend a few API calls checking candidate
+  queries. A thin SERP (Google returns only a handful of results) signals weak
+  competition — those name+modifier and niche-project queries are usually the
+  winnable ones, while two-word head terms are owned by aggregators.
 
 Configure via environment variables:
 ```bash

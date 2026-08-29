@@ -11,6 +11,11 @@ they mostly report noise, and the free tools already cover the workflow.
   reaching for anything paid.
 - **`scripts/gsc_rank.py`** — this skill's own free daily rank check via the
   official GSC API. No SERP scraping, no billing.
+- **A SERP API free tier** (e.g. SerpApi, ~100 searches/month recurring) — the
+  only remaining legitimate way to check real Google positions for queries the
+  site gets zero impressions on (see `references/measurement.md`). Google
+  deprecated Programmable Search Engine's "entire web" mode and no longer
+  honors `num=100`, so budget ~2 paginated fetches per keyword and run weekly.
 - **Google Rich Results Test** — validates `Person`/`FAQPage`/`HowTo`/`Speakable`
   JSON-LD before and after shipping (`references/on-site.md`).
 - **Google's Structured Data Markup Helper** — a point-and-click way to generate
