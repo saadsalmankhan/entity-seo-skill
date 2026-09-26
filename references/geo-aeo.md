@@ -23,12 +23,15 @@ recognizing `{ENTITY}` as a single, disambiguated entity.
 - Lead each substantive page with the core claim/answer in the **first 1–2
   sentences** — AI synthesis tools weight the top of the page heavily.
 - Include specific facts, numbers, and first-hand outcomes (a case study with real
-  metrics beats a generic explainer) — see Phase 4 "Content" in `SKILL.md`.
+  metrics beats a generic explainer) — see the `content` action in `SKILL.md`.
 - Cite external authoritative sources where relevant; original data or a clearly
   stated point of view is what gets an AI engine to prefer citing this entity over
   a generic aggregator.
 - Keep the entity's name and role stated consistently near the top of every page —
   vague phrasing gives AI engines nothing to anchor the entity to.
+- State relationships in plain, extractable sentences: "Acme Labs was founded by
+  Jane Doe in 2019", "The Checker is made by Acme Labs". AI engines answer "who
+  founded / who makes / who is behind" questions from sentences like these.
 
 **Technical GEO**
 - HTTPS everywhere (baseline trust signal).
@@ -39,9 +42,12 @@ recognizing `{ENTITY}` as a single, disambiguated entity.
 
 ## Query intent (decide format before writing)
 Match content format to why someone is searching, not just what they typed:
-- **Navigational** ("{ENTITY}") — the exact-name query this whole skill targets.
-  The lever here is consolidation (on-site entity graph + off-site profile links),
-  not new content.
+- **Navigational** ("{ENTITY}") — the exact-name query. The lever here is
+  consolidation and relationships (the entity graph + off-site profiles that
+  confirm them), not new content.
+- **Relationship** ("who founded {COMPANY}", "who makes {PRODUCT}", "{PERSON}
+  {COMPANY}") — answered from entity pages and schema that state the link; each
+  maps to a row in `entities.yaml` and is tracked by `measure`.
 - **Informational** ("who is {ENTITY}", "what does {ENTITY} do") — a direct-answer
   paragraph or FAQ entry, per the AEO section below.
 - **Commercial investigation** ("best {ROLE} for X", "{ENTITY} vs {COMPETITOR}") —
@@ -77,6 +83,9 @@ Match content format to why someone is searching, not just what they typed:
 - Cover the actual long-tail questions people ask about the entity (check "People
   also ask" for the name query, and recurring questions from real
   conversations/interviews) as their own headings.
+- Relationship questions make good genuine FAQ entries on entity pages: "Who
+  built {PRODUCT}?", "What does {COMPANY} make?", but only where people really
+  ask them.
 
 ## Validate
 - Google Rich Results Test for `FAQPage`/`HowTo`/`Speakable`, same as the entity

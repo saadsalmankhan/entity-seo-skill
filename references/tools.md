@@ -16,8 +16,19 @@ they mostly report noise, and the free tools already cover the workflow.
   site gets zero impressions on (see `references/measurement.md`). Google
   deprecated Programmable Search Engine's "entire web" mode and no longer
   honors `num=100`, so budget ~2 paginated fetches per keyword and run weekly.
-- **Google Rich Results Test** — validates `Person`/`FAQPage`/`HowTo`/`Speakable`
-  JSON-LD before and after shipping (`references/on-site.md`).
+- **Google Knowledge Graph Search API** — free with an API key; shows whether
+  Google has consolidated each entity on the map and whether it points at the
+  entity's own domain. `scripts/kg_check.py` wraps it (`references/measurement.md`).
+- **Wikidata** (read-only here) — look up the official Q-ids of organizations,
+  schools and topics you relate to, and use their Wikidata/Wikipedia URLs in
+  `sameAs` for those *third-party* nodes. Only create or edit an item for your
+  own entity if it is genuinely notable under Wikidata's rules.
+- **A diagram tool** (Mermaid in Markdown works) — draw the entity map from
+  `entities.yaml` so the owner can see and confirm every line.
+- **Google Rich Results Test** — validates `Person`/`Organization`/`Product`/`FAQPage`/
+  `HowTo`/`Speakable` JSON-LD before and after shipping (`references/on-site.md`).
+  The Schema Markup Validator (validator.schema.org) shows the full graph, which
+  is useful for spotting `@id` references that don't resolve.
 - **Google's Structured Data Markup Helper** — a point-and-click way to generate
   starter FAQ/HowTo schema if writing JSON-LD by hand isn't an option.
 - **AnswerThePublic** (free tier) — surfaces real question-phrased searches
