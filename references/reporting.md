@@ -5,33 +5,38 @@ update — that the entity can keep or hand to a stakeholder. Optional: skip it 
 routine checks. This is a deliverable, not a step in the core loop.
 
 ## When to generate one
-- End of **Phase 1 (Diagnose)** — a baseline before any changes ship.
-- End of a **Phase 6 (Iterate)** cycle — re-score the same dimensions so the new
+- After the first **`audit`** — a baseline before any changes ship.
+- After each **iterate** cycle — re-score the same dimensions so the new
   report shows delta against the last one. Keep old reports; don't overwrite them.
 
 ## Score what this skill actually did
-Six dimensions, each scored 1–10 (1–3 critical, 4–5 below average, 6–7 decent
+Seven dimensions, each scored 1–10 (1–3 critical, 4–5 below average, 6–7 decent
 foundation needing specific fixes, 8–9 strong, 10 exemplary), plus one non-scored
-real-data section:
+real-data section. The first two are the core of entity SEO; list them first.
 
-1. **On-site SEO** — walk `references/on-site.md`: titles, meta descriptions,
-   heading hierarchy, URL structure, canonicals, `<h1>`/identity block,
-   sitemap/robots, image SEO, OG/Twitter cards, PDF consistency.
-2. **GEO (AI search readiness)** — walk the GEO half of `references/geo-aeo.md`:
-   E-E-A-T signals, AI-citable content structure (answer up top, specific facts,
-   original point of view), technical crawlability for AI bots.
-3. **AEO (answer & voice readiness)** — walk the AEO half of
-   `references/geo-aeo.md`: featured-snippet formatting, FAQ/HowTo/Speakable
-   schema validity (cross-check Search Console → Enhancements), voice-search
-   phrasing.
-4. **JSON-LD entity graph** — does it actually resolve to one `@id` referenced
-   consistently site-wide? This is the backbone the other dimensions lean on.
-5. **Off-site authority** — walk `references/off-site.md`: for each profile, is
-   `{DOMAIN}` in the machine-readable URL field, not just bio prose? Score =
-   coverage × correctness, not link count.
-6. **Content & consolidation** — how many first-hand, substantive pages exist
-   reinforcing "{ENTITY} = {TOPIC}", each properly authored (JSON-LD `author` →
-   central `@id`)?
+1. **Entity map & relationship coverage.** Does `entities.yaml` exist, has the
+   owner confirmed it, and does every entity have a home page? Score = share of
+   relationship rows that are *stated*, *encoded*, *confirmed off-site* and
+   *answered* correctly (the four `audit` checks). Show the table.
+2. **Reinforcement.** Walk `references/reinforcement.md`: do titles, meta
+   descriptions, bylines, author boxes, image alt text, video descriptions and
+   profiles state the relationships, in wording close to the statement library,
+   without stuffing?
+3. **JSON-LD entity graph.** Every entity is a node with its own `@id`; every
+   relationship references a node by `@id`; no dangling references; articles
+   declare `about`/`mentions`.
+4. **On-site SEO.** Walk `references/on-site.md`: titles, meta descriptions,
+   heading hierarchy, URL structure, canonicals, sitemap/robots, image SEO,
+   OG/Twitter cards, PDF consistency, content quality.
+5. **GEO (AI search readiness).** Walk the GEO half of `references/geo-aeo.md`:
+   E-E-A-T, AI-citable structure, extractable relationship sentences, AI-crawler
+   access.
+6. **AEO (answer & voice readiness).** Walk the AEO half of
+   `references/geo-aeo.md`: snippet formatting, FAQ/HowTo/Speakable validity
+   (cross-check Search Console → Enhancements), voice phrasing.
+7. **Off-site authority.** Walk `references/off-site.md`: URL fields, structured
+   relationship fields, and whether the other end confirms each relationship.
+   Score = coverage × correctness, not link count.
 
 Plus **search rank** — not scored 1–10, it's real numbers: pull straight from
 `scripts/gsc_rank.py` — average position trend for the name quer(y/ies),
@@ -54,10 +59,11 @@ else's name; it's the entity's own report.
 Use the `docx` skill to generate the `.docx` (it handles the DOCX mechanics —
 tables, shading, headers/footers — correctly; don't hand-roll XML). Suggested
 structure:
-1. Cover: `{ENTITY}`, "Entity SEO Report", date, the six scores as a color-coded
+1. Cover: `{ENTITY}`, "Entity SEO Report", date, the seven scores as a color-coded
    strip.
-2. Executive summary: 3–5 sentences — current position for the name query, what's
-   driving it, the single highest-leverage next move.
+2. Executive summary: 3–5 sentences — which relationships search engines and AI
+   assistants get right or wrong, current position for the name query, and the
+   single highest-leverage next move.
 3. One section per dimension with a findings table (Signal | Finding | Status) —
    every row backed by something actually observed, not boilerplate.
 4. Rank trend: a table (and, if this is a follow-up report, a simple before/after

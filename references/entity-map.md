@@ -1,5 +1,9 @@
 # Entity map — the foundation everything else reinforces
 
+The `map` action produces this as `entities.yaml` in the project (start from
+`templates/entities.yaml`). Every other action reads it, so it has to be
+accurate and **confirmed by the owner** before anything uses it.
+
 Entity SEO starts here, not with titles or schema. You can't help Google or an AI
 engine understand how your entities relate until you've written those relationships
 down yourself. Everything in the other reference files (schema, profiles, articles,
@@ -90,7 +94,7 @@ Each entity needs one canonical URL that is *about that entity* and serves as it
 
 An entity whose only presence is a bullet on someone else's page is hard to
 identify, hard to cite, and has nowhere to receive links. If a product or service
-doesn't have a page yet, that's a Phase 4 content task.
+doesn't have a page yet, that's a `content` task.
 
 ## 5. Write the canonical relationship statements
 Turn the **Why** column into a short **statement library**: the exact wording

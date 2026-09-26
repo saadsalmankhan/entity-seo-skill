@@ -95,9 +95,33 @@ Run it daily on whatever scheduler you use (cron, a Claude Code scheduled task, 
 CI cron, etc.). Optionally email the report through an existing transactional
 sender (Resend/SMTP) — read the key from the environment, never hardcode it.
 
+## Relationship checks (is the map being understood?)
+Rank for the name is one number. Entity SEO is working when search engines and
+AI assistants answer **relationship questions** correctly. Two checks:
+
+**Knowledge Graph (official, free).** `scripts/kg_check.py` queries Google's
+Knowledge Graph Search API for each entity on the map and flags whether a match
+points at the entity's own domains:
+```bash
+export KG_API_KEY=...            # from a chmod-600 env file, never committed
+export KG_QUERIES="Jane Doe,Acme Labs,Acme Contrast Checker"
+export KG_DOMAINS="example.org,acmelabs.example"
+python3 scripts/kg_check.py
+```
+"Not in the Knowledge Graph yet" is normal for new people, products and small
+companies. Trend it over months. The API can't be influenced directly; it
+reflects the on-site and off-site work.
+
+**Relationship questions (manual).** Ask each `relationship_questions` entry in
+`entities.yaml` ("Who founded Acme Labs?", "Who makes the Acme Contrast
+Checker?") in Google and 1–2 AI assistants (ChatGPT Search, Perplexity, Gemini).
+Log answer / correct? / source cited, per date. A wrong or missing answer points
+at the exact line that needs more support (on-site statement, schema, off-site
+confirmation or content). Never scrape or automate these; ask them yourself.
+
 ## GEO/AEO signal checks
 - Search Console → **Enhancements** shows valid/invalid counts for any FAQ/HowTo
-  markup added in the GEO/AEO phase (`references/geo-aeo.md`) — fix invalid items
+  markup added by the `site` action (`references/geo-aeo.md`) — fix invalid items
   immediately.
 - There's no free official API for AI-Overview or assistant citations. Treat
   whether an AI search cites `{ENTITY}` as a manual, periodic spot-check (ask
@@ -110,18 +134,24 @@ sender (Resend/SMTP) — read the key from the environment, never hardcode it.
 - **Weeks 2–4:** impressions rise, average position settles and drops. This is where
   the entity fixes show up.
 - Check **weekly**, not hourly.
-- If rank stalls after on-site is complete, the answer is more **off-site authority
-  and content**, not more on-site tweaks.
+- If rank stalls after on-site is complete, the answer is more **off-site
+  confirmation of the relationships and more content that demonstrates them**,
+  not more on-site tweaks.
 
 ## Monitoring cadence
 - **Weekly**: review the rank-check output (average position trend for
-  `{ENTITY}`); skim Search Console impressions/clicks for anything new.
+  `{ENTITY}` and the name + company/product queries); skim Search Console
+  impressions/clicks for anything new.
 - **Monthly**: content-quality audit against `references/on-site.md`'s checklist
   (word count, grammar, does each page still directly answer its target
   question) on every key page; spot-check the target voice/AI queries on
   whatever assistants are on hand (`references/local-voice-seo.md`), logging
   any change from the last check.
-- **Quarterly**: re-run the off-site checklist (`references/off-site.md`) to
+- **Monthly (relationships)**: ask the `relationship_questions` from
+  `entities.yaml` in Google and 1–2 AI assistants and log the answers; run
+  `scripts/kg_check.py`.
+- **Quarterly**: re-read `entities.yaml` with the owner: new products, role
+  changes or a rebrand go in first, then re-run `audit`. Re-run the off-site checklist (`references/off-site.md`) to
   confirm every profile link still resolves and nothing has drifted; revisit
   the FAQ question set — are these still real questions people ask, or has the
   entity landscape shifted (new namesakes, a role change)?

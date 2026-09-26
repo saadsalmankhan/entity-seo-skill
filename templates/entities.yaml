@@ -1,0 +1,68 @@
+# entities.yaml: the entity map every entity-seo action reads.
+# Keep it in the project (repo root or docs/). Update it FIRST whenever
+# something changes (new product, role change, rebrand), then re-run `audit`.
+# Only real entities and true relationships. This file drives public schema.
+
+domain: https://example.org
+confirmed_by_owner: false          # `map` sets true once the owner has reviewed it
+last_audit: null                   # YYYY-MM-DD, set by `audit`
+
+entities:
+  - key: person                    # short key used in relationships below
+    type: Person                   # schema.org type
+    name: Jane Doe
+    id: https://example.org/#person          # the @id used in JSON-LD
+    home: /about                             # canonical page about this entity
+    sameAs: [https://www.linkedin.com/in/janedoe]   # real, owned profiles only
+  - key: company
+    type: Organization
+    name: Acme Labs Ltd.
+    alternateName: Acme            # brand name, if brand = company
+    id: https://example.org/#org
+    home: /
+    url: https://acmelabs.example
+  - key: checker
+    type: SoftwareApplication      # Product / Service / SoftwareApplication / Book / Course ...
+    name: Acme Contrast Checker
+    id: https://example.org/products/contrast-checker#product
+    home: /products/contrast-checker
+  - key: method
+    type: DefinedTerm
+    name: The Contrast-First Method
+    id: https://example.org/method/contrast-first#term
+    home: /method/contrast-first
+
+relationships:
+  # from / rel / to use entity keys. why = the one sentence content repeats.
+  # property = how the schema encodes it. status is filled in by `audit`.
+  - from: person
+    rel: founded
+    to: company
+    why: Jane started Acme Labs in 2019 to build accessible design tools.
+    property: Organization.founder
+    status: { stated: null, schema: null, offsite: null, answered: null }
+  - from: company
+    rel: makes
+    to: checker
+    why: Acme's flagship product checks WCAG color contrast.
+    property: SoftwareApplication.creator / Product.manufacturer
+    status: { stated: null, schema: null, offsite: null, answered: null }
+  - from: person
+    rel: created
+    to: method
+    why: Jane coined the Contrast-First Method, which the Checker implements.
+    property: CreativeWork.creator
+    status: { stated: null, schema: null, offsite: null, answered: null }
+
+statements:
+  # Each names an entity AND a related entity. Short (~160 chars) for bios and
+  # meta descriptions; long (~50 words) for about sections and press kits.
+  person_short: "Jane Doe is the founder of Acme Labs and creator of the Contrast-First Method for accessible design."
+  company_short: "Acme Labs, founded by Jane Doe in 2019, makes the Acme Contrast Checker."
+  checker_short: "The Acme Contrast Checker, by Acme Labs, applies Jane Doe's Contrast-First Method."
+
+# Questions `measure` asks Google and AI assistants, each tied to a relationship.
+relationship_questions:
+  - { q: "Who founded Acme Labs?", expect: Jane Doe }
+  - { q: "Who makes the Acme Contrast Checker?", expect: Acme Labs }
+  - { q: "What is the Contrast-First Method?", expect: "Jane Doe's accessible design method" }
