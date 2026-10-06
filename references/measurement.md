@@ -120,9 +120,10 @@ at the exact line that needs more support (on-site statement, schema, off-site
 confirmation or content). Never scrape or automate these; ask them yourself.
 
 ## GEO/AEO signal checks
-- Search Console → **Enhancements** shows valid/invalid counts for any FAQ/HowTo
-  markup added by the `site` action (`references/geo-aeo.md`) — fix invalid items
-  immediately.
+- Search Console → **Enhancements** for the structured data types that still
+  have reports (breadcrumbs, profile pages, products): fix invalid items
+  immediately. FAQ and HowTo reports no longer exist (see the status table in
+  `references/geo-aeo.md`).
 - There's no free official API for AI-Overview or assistant citations. Treat
   whether an AI search cites `{ENTITY}` as a manual, periodic spot-check (ask
   ChatGPT Search / Perplexity / Gemini the name query yourself), not something to
@@ -153,5 +154,5 @@ confirmation or content). Never scrape or automate these; ask them yourself.
 - **Quarterly**: re-read `entities.yaml` with the owner: new products, role
   changes or a rebrand go in first, then re-run `audit`. Re-run the off-site checklist (`references/off-site.md`) to
   confirm every profile link still resolves and nothing has drifted; revisit
-  the FAQ question set — are these still real questions people ask, or has the
+  the Q&A question set — are these still real questions people ask, or has the
   entity landscape shifted (new namesakes, a role change)?

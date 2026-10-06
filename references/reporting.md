@@ -32,8 +32,10 @@ real-data section. The first two are the core of entity SEO; list them first.
    E-E-A-T, AI-citable structure, extractable relationship sentences, AI-crawler
    access.
 6. **AEO (answer & voice readiness).** Walk the AEO half of
-   `references/geo-aeo.md`: snippet formatting, FAQ/HowTo/Speakable validity
-   (cross-check Search Console → Enhancements), voice phrasing.
+   `references/geo-aeo.md`: snippet formatting (question headings, direct
+   answers, lists, tables), voice phrasing, and no deprecated markup
+   (`HowTo`, `FAQPage` sold as a Google feature; see the status table in
+   `references/geo-aeo.md`).
 7. **Off-site authority.** Walk `references/off-site.md`: URL fields, structured
    relationship fields, and whether the other end confirms each relationship.
    Score = coverage × correctness, not link count.

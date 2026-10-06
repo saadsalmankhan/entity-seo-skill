@@ -40,8 +40,9 @@ content serves both.
   the clipped keyword-fragment version.
 - **Q&A structure**: question-phrased heading, then a tight **40–60 word** direct
   answer immediately below — the range voice assistants most often read aloud.
-- **`SpeakableSpecification` schema** on the 1–2 sections best suited to being
-  read aloud (the entity's definition sentence, a key FAQ answer).
+- **Skip `SpeakableSpecification`** unless the entity is a news publisher: Google
+  only supports it as a beta for news articles. Assistants read the plain direct
+  answer, so the 40–60 word paragraph is what matters.
 - **Page speed and mobile**: voice results skew mobile/on-the-go; a slow page is
   a ranking penalty here specifically, on top of the general UX cost.
 - **Test on real assistants**: ask Siri, Google Assistant, and Alexa the target
@@ -57,5 +58,5 @@ content serves both.
 | Google Business Profile | Skip | Claim, verify, keep current |
 | Location pages | Skip — one clear location line is enough | One per genuine service area |
 | Local backlinks | Not a priority | Sponsor/guest-post locally |
-| Voice search (Q&A, Speakable, 40–60 word answers) | Apply | Apply |
+| Voice search (Q&A, 40–60 word answers) | Apply | Apply |
 | Voice-assistant spot-checks | Apply | Apply |

@@ -3,7 +3,8 @@
 **GEO** (Generative Engine Optimization) targets AI-powered search/answer surfaces
 (Perplexity, ChatGPT Search, Google AI Overviews, Gemini) that synthesize answers
 from multiple sources and cite them. **AEO** (Answer Engine Optimization) targets
-featured snippets, People Also Ask, and voice search. Both build on the entity
+featured snippets, People Also Ask, and voice search, mostly through how content is
+written, now that most answer-specific rich results are gone. Both build on the entity
 graph in `references/on-site.md` — do this **after** the JSON-LD entity graph and
 identity block are in place, since GEO/AEO signals depend on Google already
 recognizing `{ENTITY}` as a single, disambiguated entity.
@@ -69,13 +70,19 @@ Match content format to why someone is searching, not just what they typed:
 - Turn any step-by-step or comparison content into an actual numbered list or
   table — snippet engines extract structured markup far more reliably than prose.
 
-**Structured answer schema**
-- Add `FAQPage` JSON-LD for genuine Q&A content (real questions the entity is
-  actually asked — don't invent filler questions just to get the schema type).
-- Add `HowTo` JSON-LD for genuine step-by-step content.
-- `SpeakableSpecification` on the 1–2 sections best suited to being read aloud
-  (the definition sentence, the direct-answer paragraph) if voice/assistant
-  surfaces matter for this entity.
+**Answer markup: what still earns anything (status as of October 2026)**
+The *content* above (question headings, direct answers, lists, tables) is what
+wins snippets, People Also Ask and AI citations. Answer-specific schema mostly
+no longer earns a Google feature. Check this list before recommending a type,
+and re-check Google's structured data docs when it's more than a few months old:
+
+| Type | Status | What to do |
+|---|---|---|
+| `FAQPage` | Google retired FAQ rich results for **all** sites on 2026-05-07 (Search Console reporting removed June 2026, API August 2026) | Don't add it for Google. Existing markup on genuine Q&A is harmless; leave it (other engines and AI crawlers may still read it) but never present it as a ranking or SERP win |
+| `HowTo` | Rich results removed September 2023 | **Never recommend.** Remove it when touching the page; use a visible numbered list instead |
+| `SpeakableSpecification` | Google beta limited to news publishers' articles (US English, Assistant) | Skip unless the entity is a news publisher |
+| `QAPage` | Supported | Only for real user Q&A threads (one question, user answers), not a page of your own FAQs |
+| Entity types (`Person`, `Organization`, `ProfilePage`, `Product`, `SoftwareApplication`, `Service`, `Article`, `BreadcrumbList`, `WebSite`) | Active | These carry the entity graph; this is where markup effort goes |
 
 **Voice search phrasing**
 - Natural, conversational phrasing in headings and direct-answer paragraphs —
@@ -83,25 +90,28 @@ Match content format to why someone is searching, not just what they typed:
 - Cover the actual long-tail questions people ask about the entity (check "People
   also ask" for the name query, and recurring questions from real
   conversations/interviews) as their own headings.
-- Relationship questions make good genuine FAQ entries on entity pages: "Who
+- Relationship questions make good genuine Q&A sections on entity pages: "Who
   built {PRODUCT}?", "What does {COMPANY} make?", but only where people really
-  ask them.
+  ask them. The visible question and answer is what counts, not FAQ markup.
 
 ## Validate
-- Google Rich Results Test for `FAQPage`/`HowTo`/`Speakable`, same as the entity
-  JSON-LD.
+- Google Rich Results Test / Schema Markup Validator for the entity JSON-LD.
+  The Rich Results Test no longer reports `FAQPage` or `HowTo`.
 - Read the rendered page as an AI engine would: does the first screen alone answer
   "who is `{ENTITY}` and what do they do"? If not, that's the highest-leverage GEO
   fix before anything else here.
-- Search Console → **Enhancements** shows valid/invalid counts for any FAQ/HowTo
-  markup added — fix invalid items immediately (bad schema is worse than none).
+- Search Console → **Enhancements** for the types that still have reports
+  (breadcrumbs, products, profile pages, etc.): fix invalid items immediately
+  (bad schema is worse than none). There is no FAQ or HowTo report any more.
 - There's no free official API for AI-Overview or assistant citations. Treat "does
   an AI search cite `{ENTITY}`" as a manual, periodic check (ask ChatGPT Search /
   Perplexity / Gemini the name query yourself) — never scrape or automate this.
 
 ## Don't
-- Don't add `FAQPage`/`HowTo` schema around content that doesn't genuinely exist as
-  Q&A/steps — Google and AI engines can tell, and mismatched schema is a
-  trust-eroding contradiction like any other (see guardrails in `SKILL.md`).
+- Don't recommend deprecated markup (`HowTo`, or `FAQPage` as a Google feature).
+  Check the status table above first.
+- Don't add any schema around content that doesn't genuinely exist on the page.
+  Google and AI engines can tell, and mismatched schema is a trust-eroding
+  contradiction like any other (see guardrails in `SKILL.md`).
 - Don't chase every AEO tactic on every page; prioritize the about page and the
   entity's 2–3 highest-traffic content pages first.
