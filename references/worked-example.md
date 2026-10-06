@@ -4,7 +4,7 @@ A real run of the skill on its author's own site (Next.js + Sanity), to show wha
 each action produces. The name "Saad Salman" is shared by many people (film,
 fabrics, academia, engineering), so the site already did most of the classic
 name-ranking work: a central `Person` `@id`, `sameAs`, per-page canonicals, an
-about page with FAQ and Speakable schema, and `llms.txt` with a
+about page with a Q&A section, and `llms.txt` with a
 disambiguation note. What was missing was the **relationships**.
 
 ## map: what the entity map found
@@ -53,6 +53,11 @@ nowhere in schema.
 - Blog posts and case studies compute `about` (entities named in title, excerpt
   or tags) and `mentions` (entities named in the body) from a small registry of
   owned entities. The author bio adds a line for the product the post is about.
+
+- Later cleanup: removed `HowTo` markup from two pages and `Speakable` from the
+  about page. Neither earns anything in Google any more (see the status table in
+  `references/geo-aeo.md`). The visible steps and definition stayed; genuine
+  `FAQPage` sections were left alone.
 
 Pattern worth copying: a registry of owned entities (`{ id, name, match }`) in
 the structured-data module, used by every article template. A new product gets

@@ -98,7 +98,8 @@ Rank gaps by leverage. Broken person ↔ company ↔ product chains come first.
 ### site
 Read `references/on-site.md` (the multi-entity graph, entity pages, titles,
 canonicals, sitemap/robots, image SEO, content quality) and `references/geo-aeo.md`
-(E-E-A-T, AI-citable content, query intent, FAQ/HowTo/Speakable). For local
+(E-E-A-T, AI-citable content, query intent, answer formatting, and the
+status table of which answer markup still earns anything). For local
 businesses, read `references/local-voice-seo.md` too. Key moves:
 - Every entity gets a node with its own `@id`; relationships reference other
   nodes by `@id`, never anonymous inline objects.

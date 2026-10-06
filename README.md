@@ -42,7 +42,7 @@ are; name an action to run just that one (`/entity-seo audit`).
 | [`references/entity-map.md`](references/entity-map.md) | Inventory entities, draw relationships with a *why*, give each entity a home, write the statement library, diagnose against the map |
 | [`references/reinforcement.md`](references/reinforcement.md) | Per-surface checklist: site, profiles, articles, images, video, comments, press, without stuffing |
 | [`references/on-site.md`](references/on-site.md) | Entity pages, the multi-entity JSON-LD graph (Person, Organization, Brand, Product, Service, DefinedTerm, articles with `about`/`mentions`), titles, canonicals, sitemap/robots, image SEO, content quality |
-| [`references/geo-aeo.md`](references/geo-aeo.md) | GEO (E-E-A-T, AI-citable content, crawlability), query intent including relationship queries, AEO (snippets, FAQ/HowTo/Speakable, voice) |
+| [`references/geo-aeo.md`](references/geo-aeo.md) | GEO (E-E-A-T, AI-citable content, crawlability), query intent including relationship queries, AEO (snippets and answer formatting, a status table of which answer markup still works, voice) |
 | [`references/off-site.md`](references/off-site.md) | Profiles and authority, with relationships confirmed from both ends |
 | [`references/local-voice-seo.md`](references/local-voice-seo.md) | Local SEO for organizations with a real physical/service-area presence, voice search for everyone |
 | [`references/measurement.md`](references/measurement.md) | GSC setup, daily rank automation, Knowledge Graph and relationship checks, monitoring cadence |

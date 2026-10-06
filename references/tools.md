@@ -7,7 +7,7 @@ they mostly report noise, and the free tools already cover the workflow.
 
 ## Free, already load-bearing in this skill
 - **Google Search Console** — ground truth for rank, impressions, indexing, and
-  FAQ/HowTo schema validity (`references/measurement.md`). Use this before
+  structured data validity (`references/measurement.md`). Use this before
   reaching for anything paid.
 - **`scripts/gsc_rank.py`** — this skill's own free daily rank check via the
   official GSC API. No SERP scraping, no billing.
@@ -25,15 +25,16 @@ they mostly report noise, and the free tools already cover the workflow.
   own entity if it is genuinely notable under Wikidata's rules.
 - **A diagram tool** (Mermaid in Markdown works) — draw the entity map from
   `entities.yaml` so the owner can see and confirm every line.
-- **Google Rich Results Test** — validates `Person`/`Organization`/`Product`/`FAQPage`/
-  `HowTo`/`Speakable` JSON-LD before and after shipping (`references/on-site.md`).
+- **Google Rich Results Test** — validates `Person`/`Organization`/`Product`/
+  `SoftwareApplication` and other active JSON-LD types before and after shipping
+  (`references/on-site.md`). It no longer reports `FAQPage` or `HowTo`.
   The Schema Markup Validator (validator.schema.org) shows the full graph, which
   is useful for spotting `@id` references that don't resolve.
 - **Google's Structured Data Markup Helper** — a point-and-click way to generate
-  starter FAQ/HowTo schema if writing JSON-LD by hand isn't an option.
+  starter `Organization`/`Article` schema if writing JSON-LD by hand isn't an option.
 - **AnswerThePublic** (free tier) — surfaces real question-phrased searches
-  people make around a name or topic. Use this to find **genuine** FAQ
-  questions instead of inventing them — the guardrail in `SKILL.md` against
+  people make around a name or topic. Use this to find **genuine** questions
+  for Q&A sections instead of inventing them — the guardrail in `SKILL.md` against
   filler questions.
 - **A grammar checker** (Grammarly free tier, or any equivalent) — the
   grammar/spelling pass now required by the content-quality check in
