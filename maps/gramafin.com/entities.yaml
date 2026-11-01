@@ -1,0 +1,152 @@
+# entities.yaml for gramafin.com — DRAFT from `/entity-seo map` (2026-11-01).
+# Built from public, self-published sources only (gramafin.com itself was not
+# reachable from the session). Every line marked TODO needs the owner's answer.
+# Only real entities and true relationships. Nothing here goes into schema
+# until confirmed_by_owner is true.
+
+domain: https://gramafin.com
+confirmed_by_owner: false
+last_audit: null
+
+entities:
+  - key: gramafin
+    type: [SoftwareApplication, WebApplication]   # TODO: add MobileApplication if iOS/Android apps exist
+    applicationCategory: FinanceApplication
+    name: Gramafin
+    id: https://gramafin.com/#app
+    home: /
+    url: https://gramafin.com
+    areaServed: PK
+    offers: { price: 0, priceCurrency: PKR }      # "free" per the owner's own description
+    featureList:                                   # features, not separate entities
+      - Expense tracking
+      - Budgets
+      - Credit card tracking
+      - PSX holdings
+      - Mutual fund holdings (daily NAV)
+      - Net worth in PKR
+    sameAs: []                                     # TODO: app-store listings, social profiles (real, owned only)
+
+  - key: company
+    type: Organization
+    name: TODO                                     # TODO: is there a registered company behind Gramafin (SECP / sole proprietor)? If none, OMIT this node; the app's publisher is then the Person.
+    id: https://gramafin.com/#org
+    home: /about                                   # TODO: page does not exist yet → `content`
+
+  - key: person
+    type: Person
+    name: Saad Salman
+    id: https://saadsalman.org/#person             # TODO: verify this is the exact @id saadsalman.org already emits; reuse it, don't mint a new one
+    home: https://saadsalman.org/about
+    jobTitle: Fintech product manager
+    homeLocation: Lahore, Pakistan
+    sameAs: [https://saadsalman.org, https://dev.to/saadsalman1]   # TODO: add LinkedIn, GitHub
+
+  - key: pmf_api
+    type: SoftwareApplication
+    name: Pakistan Mutual Funds API
+    alternateName: pakistan-mutual-funds-api
+    id: https://saadsalman.org/projects/pakistan-mutual-funds-api#app   # TODO: confirm slug on saadsalman.org
+    home: https://saadsalman.org/projects/pakistan-mutual-funds-api     # TODO: confirm
+    license: MIT
+    sameAs: []                                     # TODO: GitHub repo, npm package, MCP listing
+
+  - key: mufap
+    type: Organization
+    name: Mutual Funds Association of Pakistan
+    alternateName: MUFAP
+    id: https://www.mufap.com.pk/#org              # external entity; reference only
+    external: true
+
+  - key: psx
+    type: Organization
+    name: Pakistan Stock Exchange
+    alternateName: PSX
+    sameAs: [https://en.wikipedia.org/wiki/Pakistan_Stock_Exchange]
+    external: true
+
+topics:                                            # Gramafin.about / Person.knowsAbout
+  - { name: Personal finance, sameAs: https://en.wikipedia.org/wiki/Personal_finance }
+  - { name: Mutual funds in Pakistan }
+  - { name: Pakistani rupee, sameAs: https://en.wikipedia.org/wiki/Pakistani_rupee }
+  - { name: Net worth, sameAs: https://en.wikipedia.org/wiki/Net_worth }
+
+relationships:
+  - from: person
+    rel: built
+    to: gramafin
+    why: Saad Salman built Gramafin as a free personal finance app for Pakistanis.
+    property: SoftwareApplication.creator + author (→ person @id)
+    status: { stated: null, schema: null, offsite: "self-published only (saadsalman.org, dev.to)", answered: "no — 'Gramafin' search returns unrelated pharma terms" }
+
+  - from: company
+    rel: publishes
+    to: gramafin
+    why: TODO — only if a registered company exists; otherwise delete this row.
+    property: SoftwareApplication.publisher
+    status: { stated: null, schema: null, offsite: null, answered: null }
+
+  - from: person
+    rel: founded
+    to: company
+    why: TODO — only if a registered company exists.
+    property: Organization.founder
+    status: { stated: null, schema: null, offsite: null, answered: null }
+
+  - from: pmf_api
+    rel: was split out of
+    to: gramafin
+    why: The Pakistan Mutual Funds API began as Gramafin's NAV scraper, because MUFAP's own API doesn't work, and was released on its own under MIT.
+    property: mentions (both directions) + visible sentence on both home pages
+    status: { stated: "saadsalman.org + dev.to", schema: "saadsalman.org only (per worked example)", offsite: null, answered: null }
+
+  - from: person
+    rel: built
+    to: pmf_api
+    why: Saad Salman wrote and maintains the Pakistan Mutual Funds API.
+    property: SoftwareApplication.creator
+    status: { stated: yes, schema: yes, offsite: dev.to, answered: null }
+
+  - from: pmf_api
+    rel: is based on data from
+    to: mufap
+    why: The API serves the daily NAVs that MUFAP publishes.
+    property: isBasedOn / mentions
+    status: { stated: null, schema: null, offsite: null, answered: null }
+
+  - from: gramafin
+    rel: values mutual fund holdings with
+    to: pmf_api
+    why: Gramafin uses the daily NAV to value a user's mutual fund holdings in PKR.
+    property: mentions
+    status: { stated: null, schema: null, offsite: null, answered: null }
+
+  - from: gramafin
+    rel: tracks holdings listed on
+    to: psx
+    why: Gramafin tracks the user's Pakistan Stock Exchange shareholdings alongside cash and funds.
+    property: about / mentions
+    status: { stated: null, schema: null, offsite: null, answered: null }
+
+statements:
+  gramafin_short: "Gramafin is a free personal finance app for Pakistan by Saad Salman: expenses, budgets, cards, PSX shares and mutual funds in one PKR net worth."
+  gramafin_long: "Gramafin is a free personal finance app built for Pakistan by Saad Salman, a fintech product manager in Lahore. It brings expenses, budgets, credit cards, PSX shareholdings and mutual funds into one place and adds them up to a single net worth in PKR, with mutual funds valued daily from MUFAP NAVs."
+  person_short: "Saad Salman is a Lahore fintech product manager and the builder of Gramafin, a free personal finance app for Pakistan."
+  pmf_api_short: "The Pakistan Mutual Funds API by Saad Salman serves daily MUFAP NAVs. It started as the NAV scraper inside Gramafin."
+  disambiguation: "Gramafin (gram·a·fin) is a personal finance app for Pakistan, not a medicine."   # search spell-corrects toward Gramicidin / Gramcef
+
+relationship_questions:
+  - { q: "What is Gramafin?", expect: "a free personal finance app for Pakistan" }
+  - { q: "Who built Gramafin?", expect: Saad Salman }
+  - { q: "Free app to track PSX shares and mutual funds in Pakistan", expect: Gramafin }
+  - { q: "Net worth tracker app Pakistan PKR", expect: Gramafin }
+  - { q: "Is there an API for MUFAP mutual fund NAVs?", expect: "Pakistan Mutual Funds API, by Saad Salman, built for Gramafin" }
+
+open_questions_for_owner:
+  - Is there a registered company behind Gramafin? Exact legal name and year?
+  - Platforms — web only, or iOS / Android too? Store URLs?
+  - Launch date (for datePublished) and current status (beta / live)?
+  - Any official Gramafin social profiles (X, LinkedIn page, Instagram, YouTube)?
+  - Does gramafin.com currently say "by Saad Salman" and link to saadsalman.org?
+  - Is there a slogan/tagline you want tied to the brand?
+  - Exact @id of the Person node and slug of the API page on saadsalman.org?
