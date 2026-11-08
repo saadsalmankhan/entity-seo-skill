@@ -7,6 +7,7 @@
 domain: https://gramafin.com
 confirmed_by_owner: true           # 2026-11-08: all owner questions answered
 last_audit: 2026-11-08
+site_fixes: 2026-11-08               # branch claude/jolly-gates-tlcfjm in saadsalmankhan/gramafin and saadsalmankhan/personal-website; not merged yet
 
 # Owner answers:
 # - No registered company. Gramafin is a personal project, so the Person is its
@@ -40,10 +41,10 @@ entities:
       - Mutual funds valued daily from MUFAP NAVs
       - Net worth in PKR
       - Connects to Claude and other AI assistants (MCP)
+    # The Gramafin repo is private (proprietary code): never link it publicly.
     sameAs:
       - https://www.instagram.com/gramafin.app/
       - https://www.linkedin.com/company/gramafin/
-      - https://github.com/saadsalmankhan/Gramafin   # linked from saadsalman.org; keep only if the repo is public
 
   - key: social
     type: ProfilePage
