@@ -26,7 +26,7 @@ entities:
     url: https://gramafin.com
     areaServed: PK
     offers: { price: 0, priceCurrency: PKR }
-    datePublished: TODO                          # launch date (YYYY-MM or YYYY-MM-DD)
+    datePublished: 2026-06                       # owner, 2026-11-08: launched June 2026
     slogan: "Apna paisa, apna hisaab."             # Roman Urdu: "Your money, your account." Show the English meaning beside it.
     featureList:                                 # features, not separate entities
       - Expense tracking
@@ -154,7 +154,6 @@ relationship_questions:
   - { q: "Is there an API for MUFAP mutual fund NAVs?", expect: "Pakistan Mutual Funds API, by Saad Salman, built for Gramafin" }
 
 open_questions_for_owner:
-  - Launch date (month and year is enough)?
   - Exact Instagram handle and LinkedIn page URL?
   - Whether gramafin.com says "by Saad Salman" will be checked in `audit` once gramafin.com is reachable.
 
