@@ -1,4 +1,7 @@
-# gramafin.com: entity map (owner answers added; a few TODOs remain)
+# gramafin.com: entity map (confirmed) and audit
+
+- Map: [`entities.yaml`](entities.yaml) (confirmed by owner 2026-11-08)
+- Audit: [`audit-2026-11-08.md`](audit-2026-11-08.md)
 
 The first `/entity-seo` run had no `entities.yaml`, so it ran **`map`**. The data is in
 [`entities.yaml`](entities.yaml). Dashed nodes are unconfirmed.

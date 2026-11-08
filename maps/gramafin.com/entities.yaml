@@ -1,45 +1,51 @@
-# entities.yaml for gramafin.com, from `/entity-seo map`.
-# Drafted 2026-11-01 from public, self-published sources, then updated with the
-# owner's answers the same day. gramafin.com itself was not reachable from the
-# session. Lines marked TODO still need the owner.
-# Only real entities and true relationships.
+# entities.yaml for gramafin.com: the map every entity-seo action reads.
+# map: drafted 2026-11-01, owner answers 2026-11-01 → 2026-11-08, confirmed.
+# audit: 2026-11-08, see audit-2026-11-08.md for the ranked gap list.
+# Only real entities and true relationships. Update this file FIRST when
+# anything changes (mobile apps, a company, a rebrand), then re-run `audit`.
 
 domain: https://gramafin.com
-confirmed_by_owner: false          # flip to true once the TODOs below are answered
-last_audit: null
+confirmed_by_owner: true           # 2026-11-08: all owner questions answered
+last_audit: 2026-11-08
 
-# Owner answers (2026-11-01):
+# Owner answers:
 # - No registered company. Gramafin is a personal project, so the Person is its
 #   creator AND publisher. No Organization node.
-# - Web only (no iOS/Android yet), live, open sign-up.
-# - Own social accounts: Instagram and LinkedIn.
-# - Tagline chosen 2026-11-08: "Apna paisa, apna hisaab." (Your money, your account.)
+# - Web only (no iOS/Android yet), live, open sign-up. Launched June 2026.
+# - Official profiles: Instagram @gramafin.app, LinkedIn company page /gramafin.
+# - Tagline: "Apna paisa, apna hisaab." (Your money, your account.)
+
+# Hosts (found in audit): gramafin.com serves only / and /about; every other
+# path 307-redirects to app.gramafin.com, which hosts the Help Centre, legal
+# pages, login/signup, the app itself, robots.txt and sitemap.xml.
 
 entities:
   - key: gramafin
     type: WebApplication
     applicationCategory: FinanceApplication
-    operatingSystem: Web browser
+    operatingSystem: Web
     name: Gramafin
-    id: https://gramafin.com/#app
+    id: https://gramafin.com/#app                # canonical @id; saadsalman.org should reference this one too
     home: /
     url: https://gramafin.com
     areaServed: PK
     offers: { price: 0, priceCurrency: PKR }
-    datePublished: 2026-06                       # owner, 2026-11-08: launched June 2026
-    slogan: "Apna paisa, apna hisaab."             # Roman Urdu: "Your money, your account." Show the English meaning beside it.
+    datePublished: 2026-06
+    slogan: "Apna paisa, apna hisaab."             # Roman Urdu: "Your money, your account."
     featureList:                                 # features, not separate entities
-      - Expense tracking
-      - Budgets
-      - Credit card tracking
-      - PSX holdings
-      - Mutual fund holdings (daily NAV)
+      - Expense and income tracking
+      - Monthly budgets
+      - Credit cards, liabilities and due-date reminders
+      - PSX stocks with live prices; crypto and bonds
+      - Mutual funds valued daily from MUFAP NAVs
       - Net worth in PKR
+      - Connects to Claude and other AI assistants (MCP)
     sameAs:
-      - https://www.instagram.com/gramafin.app/  # TODO: confirm the exact handle (heard as "gramafin.app")
-      - TODO                                     # LinkedIn page URL, e.g. https://www.linkedin.com/company/<slug>/
+      - https://www.instagram.com/gramafin.app/
+      - https://www.linkedin.com/company/gramafin/
+      - https://github.com/saadsalmankhan/Gramafin   # linked from saadsalman.org; keep only if the repo is public
 
-  - key: social                                 # the official profiles, listed in gramafin.sameAs above
+  - key: social
     type: ProfilePage
     name: Gramafin on Instagram and LinkedIn
     external: true
@@ -47,20 +53,30 @@ entities:
   - key: person
     type: Person
     name: Saad Salman
-    id: https://saadsalman.org/#person           # verified 2026-11-08: emitted by saadsalman.org
+    id: https://saadsalman.org/#person           # verified: emitted by saadsalman.org and gramafin.com/about
     home: https://saadsalman.org/about
-    jobTitle: Fintech product manager
+    jobTitle: Fintech Product Manager
     homeLocation: Lahore, Pakistan
-    sameAs: [https://saadsalman.org, https://dev.to/saadsalman1]   # TODO: add personal LinkedIn, GitHub
+    sameAs:
+      - https://www.linkedin.com/in/saadsalman1/
+      - https://github.com/saadsalmankhan
+      - https://dev.to/saadsalman1
+      - https://x.com/saadsalmankhan1
+      - https://bsky.app/profile/saadsalman.org
+      - https://peerlist.io/saadsalman
+      - https://www.instagram.com/saadsalmankhan
 
   - key: pmf_api
     type: SoftwareApplication
     name: Pakistan Mutual Funds API
-    alternateName: pakistan-mutual-funds-api
-    id: https://saadsalman.org/projects/pakistan-mutual-funds#app       # TODO: match the @id that page emits (checked in `audit`)
-    home: https://saadsalman.org/projects/pakistan-mutual-funds         # verified 2026-11-08
+    alternateName: [MUFAP API, pakistan-mutual-funds-api]
+    id: https://saadsalman.org/projects/pakistan-mutual-funds/#software   # verified: the @id that page emits
+    home: https://saadsalman.org/projects/pakistan-mutual-funds
     license: MIT
-    sameAs: []                                   # TODO: GitHub repo, npm package, MCP listing
+    sameAs:
+      - https://github.com/saadsalmankhan/pakistan-mutual-funds-api
+      - https://github.com/saadsalmankhan/pakistan-mutual-funds-data
+      - https://www.npmjs.com/package/pakistan-mutual-funds-mcp
 
   - key: mufap
     type: Organization
@@ -83,54 +99,68 @@ topics:                                          # Gramafin.about / Person.knows
   - { name: Net worth, sameAs: https://en.wikipedia.org/wiki/Net_worth }
 
 relationships:
+  # status values from the 2026-11-08 audit. "partial" = true somewhere but not
+  # where it matters most (usually: not on the gramafin.com homepage).
   - from: person
     rel: built and publishes
     to: gramafin
     why: Saad Salman built Gramafin as a personal project, a free personal finance app for Pakistanis, and runs it himself.
     property: WebApplication.creator + author + publisher (all → person @id)
-    status: { stated: unknown, schema: null, offsite: "self-published only (saadsalman.org, dev.to)", answered: "no: 'Gramafin' search returns unrelated drug names" }
+    status:
+      stated: partial      # /about and every app.gramafin.com footer say "built by Saad Salman"; the homepage doesn't
+      schema: partial      # /about has creator → person @id, but the app node has no @id and no publisher; homepage has no JSON-LD
+      offsite: self-only   # saadsalman.org, GitHub, dev.to — all owned; no independent source
+      answered: no         # web search for "Gramafin" finds nothing about the app
 
   - from: gramafin
     rel: has official profiles on
     to: social
     why: The Gramafin Instagram and LinkedIn pages are run by Gramafin and link back to gramafin.com.
     property: WebApplication.sameAs
-    status: { stated: null, schema: null, offsite: "not indexed: search finds neither profile", answered: null }
+    status: { stated: no, schema: no, offsite: "profiles exist, not found by search", answered: no }
 
   - from: pmf_api
     rel: was split out of
     to: gramafin
-    why: The Pakistan Mutual Funds API began as Gramafin's NAV scraper, because MUFAP's own API doesn't work, and was released on its own under MIT.
+    why: The Pakistan Mutual Funds API began as Gramafin's NAV scraper, because MUFAP publishes no API, and was released on its own under MIT.
     property: mentions (both directions) + a visible sentence on both home pages
-    status: { stated: "saadsalman.org + dev.to", schema: "saadsalman.org only", offsite: dev.to, answered: null }
+    status:
+      stated: partial      # saadsalman.org (both project pages) + dev.to; gramafin.com never mentions the API
+      schema: partial      # saadsalman.org nodes mention each other; gramafin.com has nothing
+      offsite: dev.to
+      answered: null       # not yet tested
 
   - from: person
     rel: built
     to: pmf_api
     why: Saad Salman wrote and maintains the Pakistan Mutual Funds API.
     property: SoftwareApplication.creator
-    status: { stated: yes, schema: yes, offsite: dev.to, answered: null }
+    status: { stated: yes, schema: yes, offsite: "GitHub, npm, dev.to (owned)", answered: null }
 
   - from: pmf_api
     rel: is based on data from
     to: mufap
     why: The API serves the daily NAVs that MUFAP publishes.
-    property: isBasedOn / mentions
-    status: { stated: null, schema: null, offsite: null, answered: null }
+    property: isBasedOn
+    status: { stated: yes, schema: yes, offsite: null, answered: null }
 
   - from: gramafin
     rel: values mutual fund holdings with
     to: pmf_api
     why: Gramafin uses the daily NAV to value a user's mutual fund holdings in PKR.
     property: mentions
-    status: { stated: null, schema: null, offsite: null, answered: null }
+    status:
+      stated: partial      # help pages say NAVs are "synced from MUFAP" but don't name the API
+      schema: no
+      offsite: saadsalman.org
+      answered: null
 
   - from: gramafin
     rel: tracks holdings listed on
     to: psx
     why: Gramafin tracks the user's Pakistan Stock Exchange shareholdings alongside cash and funds.
     property: about / mentions
-    status: { stated: null, schema: null, offsite: null, answered: null }
+    status: { stated: "yes (help pages)", schema: no, offsite: saadsalman.org, answered: "no: category search lists Sarmaaya, FinHisaab, SmartPSX; not Gramafin" }
 
 statements:
   gramafin_short: "Gramafin is a free personal finance app for Pakistan by Saad Salman: expenses, budgets, cards, PSX shares and mutual funds in one PKR net worth."
@@ -138,7 +168,7 @@ statements:
   person_short: "Saad Salman is a Lahore fintech product manager and the builder of Gramafin, a free personal finance app for Pakistan."
   pmf_api_short: "The Pakistan Mutual Funds API by Saad Salman serves daily MUFAP NAVs. It started as the NAV scraper inside Gramafin."
   social_bio: "Apna paisa, apna hisaab. Free money app for Pakistan: expenses, budgets, PSX & mutual funds in one PKR net worth. By Saad Salman."   # fits Instagram's 150-char limit; link gramafin.com in the bio link field
-  saad_project_page: https://saadsalman.org/projects/gramafin   # Gramafin's page on the creator's site (other end of 'built')
+  saad_project_page: https://saadsalman.org/projects/gramafin
   disambiguation: "Gramafin (gram·a·fin) is a personal finance app for Pakistan, not a medicine."
 
 tagline:
@@ -152,13 +182,3 @@ relationship_questions:
   - { q: "Free app to track PSX shares and mutual funds in Pakistan", expect: Gramafin }
   - { q: "Net worth tracker app Pakistan PKR", expect: Gramafin }
   - { q: "Is there an API for MUFAP mutual fund NAVs?", expect: "Pakistan Mutual Funds API, by Saad Salman, built for Gramafin" }
-
-open_questions_for_owner:
-  - Exact Instagram handle and LinkedIn page URL?
-  - Whether gramafin.com says "by Saad Salman" will be checked in `audit` once gramafin.com is reachable.
-
-# First look at gramafin.com (2026-11-08, homepage only; full `audit` still to run):
-# - Next.js, server-rendered: the text is crawlable.
-# - <title> is just "Gramafin"; description "Personal finance & wealth management in PKR".
-# - No JSON-LD on the page.
-# - No link to Instagram or LinkedIn, and no "by Saad Salman" or link to saadsalman.org.
