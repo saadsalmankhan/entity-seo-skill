@@ -13,7 +13,7 @@ last_audit: null
 #   creator AND publisher. No Organization node.
 # - Web only (no iOS/Android yet), live, open sign-up.
 # - Own social accounts: Instagram and LinkedIn.
-# - Wants a tagline (not chosen yet; see tagline_options).
+# - Tagline chosen 2026-11-08: "Apna paisa, apna hisaab." (Your money, your account.)
 
 entities:
   - key: gramafin
@@ -27,7 +27,7 @@ entities:
     areaServed: PK
     offers: { price: 0, priceCurrency: PKR }
     datePublished: TODO                          # launch date (YYYY-MM or YYYY-MM-DD)
-    slogan: TODO                                 # pick from tagline_options
+    slogan: "Apna paisa, apna hisaab."             # Roman Urdu: "Your money, your account." Show the English meaning beside it.
     featureList:                                 # features, not separate entities
       - Expense tracking
       - Budgets
@@ -47,7 +47,7 @@ entities:
   - key: person
     type: Person
     name: Saad Salman
-    id: https://saadsalman.org/#person           # TODO: verify this is the exact @id saadsalman.org already emits
+    id: https://saadsalman.org/#person           # verified 2026-11-08: emitted by saadsalman.org
     home: https://saadsalman.org/about
     jobTitle: Fintech product manager
     homeLocation: Lahore, Pakistan
@@ -57,8 +57,8 @@ entities:
     type: SoftwareApplication
     name: Pakistan Mutual Funds API
     alternateName: pakistan-mutual-funds-api
-    id: https://saadsalman.org/projects/pakistan-mutual-funds-api#app   # TODO: confirm slug
-    home: https://saadsalman.org/projects/pakistan-mutual-funds-api     # TODO: confirm
+    id: https://saadsalman.org/projects/pakistan-mutual-funds#app       # TODO: match the @id that page emits (checked in `audit`)
+    home: https://saadsalman.org/projects/pakistan-mutual-funds         # verified 2026-11-08
     license: MIT
     sameAs: []                                   # TODO: GitHub repo, npm package, MCP listing
 
@@ -137,13 +137,14 @@ statements:
   gramafin_long: "Gramafin is a free web app for personal finance in Pakistan, built by Saad Salman, a fintech product manager in Lahore. It brings expenses, budgets, credit cards, PSX shareholdings and mutual funds into one place and adds them up to a single net worth in PKR, with mutual funds valued daily from MUFAP NAVs."
   person_short: "Saad Salman is a Lahore fintech product manager and the builder of Gramafin, a free personal finance app for Pakistan."
   pmf_api_short: "The Pakistan Mutual Funds API by Saad Salman serves daily MUFAP NAVs. It started as the NAV scraper inside Gramafin."
-  social_bio: "Free personal finance app for Pakistan. Expenses, budgets, cards, PSX & mutual funds → one net worth in PKR. Built by @Saad Salman. gramafin.com"
+  social_bio: "Apna paisa, apna hisaab. Free money app for Pakistan: expenses, budgets, PSX & mutual funds in one PKR net worth. By Saad Salman."   # fits Instagram's 150-char limit; link gramafin.com in the bio link field
+  saad_project_page: https://saadsalman.org/projects/gramafin   # Gramafin's page on the creator's site (other end of 'built')
   disambiguation: "Gramafin (gram·a·fin) is a personal finance app for Pakistan, not a medicine."
 
-tagline_options:                                 # owner picks one; it becomes `slogan`
-  - "Your whole net worth, in rupees."
-  - "Every rupee, one net worth."
-  - "Pakistan's money, in one place."
+tagline:
+  text: "Apna paisa, apna hisaab."
+  meaning_en: "Your money, your account."
+  use: brand slogan in schema, site hero, social bios; pair with the English meaning in meta descriptions.
 
 relationship_questions:
   - { q: "What is Gramafin?", expect: "a free personal finance app for Pakistan" }
@@ -155,6 +156,10 @@ relationship_questions:
 open_questions_for_owner:
   - Launch date (month and year is enough)?
   - Exact Instagram handle and LinkedIn page URL?
-  - Which tagline (or your own)?
-  - Exact @id of the Person node and slug of the API page on saadsalman.org?
   - Whether gramafin.com says "by Saad Salman" will be checked in `audit` once gramafin.com is reachable.
+
+# First look at gramafin.com (2026-11-08, homepage only; full `audit` still to run):
+# - Next.js, server-rendered: the text is crawlable.
+# - <title> is just "Gramafin"; description "Personal finance & wealth management in PKR".
+# - No JSON-LD on the page.
+# - No link to Instagram or LinkedIn, and no "by Saad Salman" or link to saadsalman.org.
